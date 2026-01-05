@@ -11,7 +11,7 @@
 Author: Declan Costello
 
 <p align="center">
-<img height="150" width="150" src="https://github.com/user-attachments/assets/83be929d-e61c-4c0f-a333-afacd127e166"/>  
+<img height="150" width="150" src="https://github.com/user-attachments/assets/c4cd95c9-ddd4-43a7-9765-aad6b49ed62d"/>  
 
 </p>
 
@@ -162,3 +162,4 @@ Execute the complete pipeline using the following commands:
 
 > [!TIP]
 > Use `uv run` before any Python command to guarantee execution with the locked environment. This ensures consistent Python versions and dependency trees across all machines.
+
